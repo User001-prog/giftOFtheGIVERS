@@ -1,0 +1,213 @@
+/* =========================================
+   2.2. ESTABLISH A BASE STYLE & CSS RESET
+   ========================================= */
+
+/* CSS Reset (from Picture 2) to ensure consistency across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Your Base Style (from Picture 1) + Assignment Requirements */
+body {
+    /* Your original background color */
+    background-color: rgba(0, 77, 128, 0.438); 
+    /* Your original font styles */
+    font-family: Arial, sans-serif; 
+    /* Your original color */
+    color: #fffbfb; 
+    
+    /* Added from Picture 2 requirements */
+    line-height: 1.6; 
+    
+    /* Added to ensure the footer doesn't stick to the bottom */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   2.3. APPLY TYPOGRAPHY STYLES
+   ========================================= */
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* =========================================
+   2.4. CREATE A LAYOUT STRUCTURE (Desktop)
+   ========================================= */
+
+/* Main container to center content */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Navigation / Menu */
+header {
+    background-color: rgba(0, 0, 0, 0.3); /* Darker header for contrast */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+/* Main Content Grid Layout (For desktop multi-column) */
+.main-content {
+    display: grid;
+    /* Creates 2 columns, one slightly wider for content, one for sidebar */
+    grid-template-columns: 2fr 1fr; 
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: auto; /* Pushes footer to bottom */
+}
+
+/* =========================================
+   2.5. APPLY VISUAL STYLES & PSEUDO-CLASSES
+   ========================================= */
+
+/* Decorative cards for your services/gallery items */
+.card {
+    background-color: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pseudo-classes for interactive elements */
+nav a:hover, nav a:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    outline: none;
+}
+
+nav a:active {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================
+   3. RESPONSIVE DESIGN (Breakpoints & Media Queries)
+   ========================================= */
+
+/* 3.2. Relative Units have been used throughout (rem, %, vh, etc.) */
+
+/* --- BREAKPOINT 1: TABLET (Max-width: 1024px) --- */
+@media screen and (max-width: 1024px) {
+    /* 3.1. Layout Adjustments: Change multi-column to single column */
+    .main-content {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 1.5rem;
+    }
+
+    /* 3.1. Typography Adjustments: Make fonts slightly smaller */
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    
+    /* Adjust nav for tablet */
+    nav {
+        gap: 1rem;
+    }
+}
+
+/* --- BREAKPOINT 2: MOBILE (Max-width: 768px) --- */
+@media screen and (max-width: 768px) {
+    /* 3.1. Navigation Adjustments: Stack menu items vertically */
+    header {
+        position: relative; /* Remove sticky on mobile if it blocks content */
+    }
+    
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 3.1. Typography Adjustments for smaller screens */
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    p { font-size: 0.95rem; }
+
+    /* 3.1. Layout adjustments: Reduce padding */
+    .container {
+        width: 95%;
+        padding: 1rem 0;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+}
+
+/* =========================================
+   3.3. RESPONSIVE IMAGES
+   ========================================= */
+
+/* Ensures images never overflow their containers on any device */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; /* Optional: rounds image corners to match cards */
+}
+
+/* If you are using the <picture> element, ensure the img inside is styled */
+picture img {
+    width: 100%;
+    height: auto;
+}
